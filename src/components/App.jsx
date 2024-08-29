@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import ContactForm from './Contact/Contact';
+import Contacts from './Contacts/Contacts';
 import ContactList from './ContactList/ContactList';
 import FilterContacts from './FilterContact/FilterContacts';
 
@@ -42,7 +42,7 @@ export const App = () => {
 
   return (
     <div>
-      <ContactForm addContact={addContact} />
+      <ContactList addContact={addContact} />
       <FilterContacts filter={filter} onFilterChange={handleFilterChange} />
       <Contacts
         contacts={getFilteredContacts()}
