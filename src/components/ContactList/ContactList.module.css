@@ -1,34 +1,37 @@
-.listContainer {
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-.contactItem {
-    margin-bottom: 12px;
-    padding: 12px;
+.formContainer {
+    max-width: 250px;
+    margin: 20px auto;
+    padding: 30px;
     border: 1px solid #ccc;
     border-radius: 8px;
     background-color: rgb(144, 168, 184);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    
 }
 
-.contactName {
-    font-weight: bold;
-    text-align: center;
+.formContainer label {
+    display: block;
+    margin-bottom: 8px;
 }
 
-.deleteButton {
-    background-color: #f44336;
+.formContainer input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.formContainer button {
+    background-color: #4caf50;
     color: white;
     border: none;
-    padding: 8px 16px;
+    padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
 }
 
-.deleteButton:hover {
-    background-color: #e53935;
+.formContainer button:hover {
+    background-color: #45a049;
 }
