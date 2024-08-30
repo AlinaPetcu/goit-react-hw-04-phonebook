@@ -4,7 +4,7 @@ import css from './Contacts.module.css';
 
 const Contacts = ({ contacts, deleteContact }) => {
   return (
-    <div className={css.listContainer}>
+    <div className={css.formContainer}>
       <h2 className={css.contactName}>Contacts</h2>
       <ul>
         {contacts.map(contact => (

@@ -1,38 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { nanoid } from 'nanoid';
 import css from './ContactList.module.css';
+const ContactList = ({ addContact }) => {
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
 
-const Contacts = ({ contacts, deleteContact }) => {
+  const handleNameChange = e => {
+    setName(e.target.value);
+  };
+
+  const handleNumberChange = e => {
+    setNumber(e.target.value);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const newContact = {
+      id: nanoid(),
+      name,
+      number,
+    };
+    addContact(newContact);
+    setName('');
+    setNumber('');
+  };
+
   return (
-    <div className={css.listContainer}>
-      <h2 className={css.contactName}>Contacts</h2>
-      <ul>
-        {contacts.map(contact => (
-          <li className={css.contactItem} key={contact.id}>
-            {contact.name} : {contact.number}
-            <button
-              className={css.deleteButton}
-              type="button"
-              onClick={() => deleteContact(contact.id)}
-            >
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
+    <div className={css.formContainer}>
+      <h1>Phonebook</h1>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="name">Name</label>
+        <input
+          onChange={handleNameChange}
+          type="text"
+          name="name"
+          id="name"
+          pattern="^[a-zA-Z]+(([' -][a-zA-Z ])?[a-zA-Z]*)*$"
+          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          required
+          value={name}
+        />
+        <label htmlFor="number">Number</label>
+        <input
+          onChange={handleNumberChange}
+          type="tel"
+          name="number"
+          id="number"
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          required
+          value={number}
+        />
+        <button type="submit">Add a contact</button>
+      </form>
     </div>
   );
 };
 
-Contacts.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  deleteContact: PropTypes.func.isRequired,
+ContactList.propTypes = {
+  addContact: PropTypes.func.isRequired,
 };
 
-export default Contacts;
+export default ContactList;
